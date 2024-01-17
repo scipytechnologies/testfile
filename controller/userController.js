@@ -39,15 +39,31 @@ router.get('/users/:id', async (req, res) => {
 // PUT - Update a user by ID
 router.put('/users/:id', async (req, res) => {
     try {
-        const updatedUser = await UserData.findByIdAndUpdate(req.params.id, req.body, { new: true });
-        if (!updatedUser) {
+        // Attempt to find the user data based on the provided ID
+        const existingData = await UserData.findById(req.params.id);
+
+        // Check if a user with the specified ID was not found
+        if (!existingData) {
             return res.status(404).json({ message: 'User not found' });
         }
-        res.status(200).json(updatedUser);
+
+        // Extract the user data from the request body
+        const newUser = req.body;
+
+        // Push the new user data into the 'data' array
+        existingData.data.push(newUser);
+
+        // Save the updated document
+        const updatedData = await existingData.save();
+
+        // Respond with the updated user data
+        res.status(200).json(updatedData);
     } catch (error) {
+        // Handle any errors that occurred during the update process
         res.status(500).json({ message: error.message });
     }
 });
+
 
 // DELETE - Delete a user by ID
 router.delete('/users/:id', async (req, res) => {
