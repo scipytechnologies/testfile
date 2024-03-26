@@ -10,20 +10,20 @@ const userSchema = new mongoose.Schema({
 });
 
 // Define the schema for the data object
-const dataSchema = new mongoose.Schema({
-    page: { type: Number, required: true },
-    per_page: { type: Number, required: true },
-    total: { type: Number, required: true },
-    total_pages: { type: Number, required: true },
-    data: [userSchema],  // Embed the user schema as an array
-    support: {
-        url: { type: String, required: true },
-        text: { type: String, required: true }
-    }
-});
+// const dataSchema = new mongoose.Schema({
+//     page: { type: Number, required: true },
+//     per_page: { type: Number, required: true },
+//     total: { type: Number, required: true },
+//     total_pages: { type: Number, required: true },
+//     data: [userSchema],  // Embed the user schema as an array
+//     support: {
+//         url: { type: String, required: true },
+//         text: { type: String, required: true }
+//     }
+// });
 
 // Create a model using the schema
-const UserData = mongoose.model('UserData', dataSchema);
+const UserData = mongoose.model('user', userSchema);
 
 // Export the model
 module.exports = UserData;

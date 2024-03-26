@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
 // Connect to MongoDB
-mongoose.connect('mongodb+srv://qwe:qwe@cluster0.g9mln6v.mongodb.net/your_database_name?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://qwe:qwe12@cluster0.g9mln6v.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
     .then(() => {
         console.log("Connected to MongoDB");
     })
